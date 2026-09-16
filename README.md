@@ -1,4 +1,4 @@
-# ASIR2
+# ASIR2 - SRI
 Curso de ASIR2 - Este es el curso del año 2026/2027
 
 
