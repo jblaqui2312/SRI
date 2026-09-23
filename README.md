@@ -1,9 +1,10 @@
-# ASIR2 - SRI
-Curso de ASIR2 - Este es el curso del año 2026/2027
+# 🚀 ASIR2 - Servicios de Red e Internet (SRI)
 
+Curso académico: **2026/2027**  
+**Autor:** José María Blanco Quintana
 
-De - José María Blanco Quintana
+---
 
-## Tema 0 -PRUEBA GITHUB
+## 📌 Tema 0 - Prueba GitHub
 
-![jljl](/Imagenes/AngelDevil.png)
+![Imagen de prueba](./Imagenes/AngelDevil.png)
