@@ -5,7 +5,7 @@
 * **Dónde:** En el CERN (Suiza).
 * **Cuándo:** En 1990, funcionando en un ordenador NeXT.
 
-![Tim Berners-Lee](Imagenes/TIM.jpg)
+![Tim Berners-Lee](TIM.jpg)
 
 ---
 
