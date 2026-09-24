@@ -10,11 +10,11 @@ Hemos utilizado el módulo nativo de Python para arrancar un servidor web rápid
 * **Comando utilizado:**
   `python -m http.server 8000`
   
-  ![Captura del servidor básico de Python](Imagenes/LocalHost-Part2.PNG)
+  ![Captura del servidor básico de Python](/Imagenes/LocalHost-Part2.PNG)
 
 * **Funcionamiento:** Al poner `http://localhost:8000` en el navegador, el servidor muestra los archivos de la carpeta actual.
 
-![]()
+![servidor básico de Python](/Imagenes/LocalHost.PNG)
 
 ---
 
