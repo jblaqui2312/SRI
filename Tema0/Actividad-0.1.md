@@ -5,6 +5,8 @@
 * **Dónde:** En el CERN (Suiza).
 * **Cuándo:** En 1990, funcionando en un ordenador NeXT.
 
+![Texto alternativo](enlace_de_la_imagen)
+
 ---
 
 ## 2. ¿Qué es la pila de protocolos usados por http?
