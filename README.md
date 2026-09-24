@@ -12,6 +12,6 @@ Curso académico: **2026/2027**  
 
 | Nº Tarea | Descripción | Enlace al Recurso |
 | :--- | :--- | :--- |
-| **Tarea 1** | Actividad 0.1 - HTTP Introduction | [Ver Actividad](Tema0/Actividad-0.1.md) |
-| **Tarea 2** | Creación del script principal | [] |
+| **Tarea 1** | Actividad 0.1 - HTTP Introduction | [Actividad1](Tema0/Actividad-0.1.md) |
+| **Tarea 2** | Creación del script principal | [Actividad2](Tema0/Actividad-0.2.md) |
 | **Tarea 3** | Documentación de la API | [] |
