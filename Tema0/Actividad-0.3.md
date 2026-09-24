@@ -15,8 +15,10 @@ Nos conectamos al servidor indicando la dirección y el puerto 80. Una vez dentr
 * **Comando de conexión:**
   `telnet www.profesordeinformatica.com 80`
   *(O usando localhost para pruebas locales)*
-
+![Imagen]()
 * **Petición enviada:**
   ```text
   GET / HTTP/1.1
   Host: [www.profesordeinformatica.com](https://www.profesordeinformatica.com)
+
+![Imagen]()
