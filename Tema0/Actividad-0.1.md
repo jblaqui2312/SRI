@@ -2,53 +2,50 @@
 
 ## 1. ¿Quién, dónde y cuándo se crea el primer servidor web?
 * **Quién:** Tim Berners-Lee.
-* **Dónde:** En el CERN (Consejo Europeo para la Investigación Nuclear, en Suiza).
-* **Cuándo:** En 1990 (ejecutándose en un ordenador NeXT).
+* **Dónde:** En el CERN (Suiza).
+* **Cuándo:** En 1990, funcionando en un ordenador NeXT.
 
 ---
 
-## 2. ¿Qué es la pila de protocolos usados por HTTP?
-HTTP opera sobre la pila de protocolos **TCP/IP**, donde cada capa cumple una función específica:
-* **Capa de Aplicación:** HTTP / HTTPS (maneja los datos de la aplicación web).
-* **Capa de Transporte:** TCP (asegura una transmisión de datos fiable y ordenada).
-* **Capa de Red:** IP (encamina los paquetes de datos por la red).
-* **Capa de Enlace / Física:** Se encarga de la transmisión física a través de cables o Wi-Fi.
+## 2. ¿Qué es la pila de protocolos usados por http?
+HTTP funciona apoyándose en la pila de protocolos TCP/IP, donde cada capa tiene su función:
+* **Capa de Aplicación:** HTTP o HTTPS, maneja los datos de la web.
+* **Capa de Transporte:** TCP, asegura que los datos lleguen bien y en orden.
+* **Capa de Red:** IP, se encarga de llevar los paquetes por la red.
+* **Capa de Enlace / Física:** Es la conexión física, como los cables o el Wi-Fi.
 
 ---
 
 ## 3. ¿Componentes de una URL?
-Una URL (Localizador Uniforme de Recursos) se compone de los siguientes elementos:
-* **Esquema / Protocolo:** Indica cómo comunicarse (ej. `http://` o `https://`).
-* **Autoridad (Usuario y Contraseña):** Opcional, para autenticación básica.
-* **Host / Dominio:** El nombre del servidor o dirección IP (ej. `www.ejemplo.com`).
-* **Puerto:** El puerto de red (por defecto 80 para HTTP y 443 para HTTPS).
-* **Ruta (Path):** La ubicación exacta del archivo o recurso en el servidor (ej. `/docs/index.html`).
-* **Parámetros / Consulta (Query):** Variables enviadas al servidor (ej. `?id=123&filtro=activo`).
-* **Fragmento / Ancla:** Apunta a una sección específica dentro de la página (ej. `#seccion2`).
+Una URL se forma con las siguientes partes:
+* **Esquema o protocolo:** Indica cómo nos conectamos, por ejemplo http o https.
+* **Autoridad:** Usuario y contraseña (si se necesitan).
+* **Host o dominio:** El nombre o IP del servidor, como www.ejemplo.com.
+* **Puerto:** El puerto por el que se entra, por defecto el 80 para HTTP y el 443 para HTTPS.
+* **Ruta:** La ubicación exacta del archivo en el servidor.
+* **Parámetros:** Datos o variables que se mandan al servidor.
+* **Fragmento:** Un ancla para ir a una zona concreta de la página.
 
 ---
 
 ## 4. ¿Pasos en la recuperación de una página web mediante HTTP?
-1. **Resolución DNS:** El navegador traduce el nombre de dominio (ej. `google.com`) en una dirección IP numérica.
-2. **Conexión TCP:** El cliente establece un canal de comunicación con el servidor mediante el protocolo TCP (Handshake de 3 vías).
-3. **Negociación TLS/SSL (si es HTTPS):** Se establece una capa de cifrado segura para proteger los datos.
-4. **Petición HTTP (Request):** El navegador envía una solicitud al servidor pidiendo un recurso específico (método `GET`, cabeceras, etc.).
-5. **Respuesta HTTP (Response):** El servidor procesa la petición y responde con un código de estado (ej. `200 OK`), las cabeceras y el cuerpo del documento (HTML, imágenes, etc.).
-6. **Renderizado:** El navegador interpreta el código recibido y dibuja la página web en pantalla para el usuario.
+1. **Resolución DNS:** El navegador busca la IP correspondiente al nombre de la página.
+2. **Conexión TCP:** Se crea el canal de comunicación con el servidor.
+3. **Negociación TLS/SSL:** Si la web es segura (HTTPS), se cifra la conexión.
+4. **Petición HTTP:** El navegador pide el archivo o recurso que quiere ver.
+5. **Respuesta HTTP:** El servidor contesta enviando el código de estado y el contenido (HTML, imágenes...).
+6. **Renderizado:** El navegador lee toda esa información y la muestra visualmente en la pantalla.
 
 ---
 
 ## 5. Diferencia entre páginas dinámicas y estáticas
-* **Páginas estáticas:** Su contenido es fijo. El servidor devuelve el archivo HTML, CSS o imagen exactamente igual a como está almacenado en el disco, sin importar quién lo solicite.
-* **Páginas dinámicas:** Su contenido se genera "al vuelo". El servidor ejecuta un script (usando tecnologías como PHP, Python, Node.js, etc.) y consulta bases de datos para construir la página personalizada antes de enviarla al cliente.
+* **Páginas estáticas:** Su contenido siempre es el mismo. El servidor devuelve el archivo tal cual está guardado en el disco.
+* **Páginas dinámicas:** El contenido se crea en el momento. El servidor ejecuta un programa o consulta una base de datos para armar la página a medida antes de enviarla.
 
 ---
 
 ## 6. ¿Cómo usar telnet para acceder a un servidor web?
-Para interactuar manualmente con un servidor web utilizando Telnet:
-1. Abrir la terminal del sistema e introducir el comando de conexión al puerto 80:
-   `telnet <nombre_de_servidor_o_ip> 80`
-2. Una vez conectado, enviar una petición HTTP básica introduciendo lo siguiente:
-   `GET / HTTP/1.1`
-   `Host: <nombre_de_servidor>`
-3. Presionar **Enter dos veces** para enviar la petición y ver la respuesta HTML del servidor web.
+Para entrar a un servidor web usando telnet:
+1. Abres la terminal y escribes el comando para conectarte al puerto 80 del servidor.
+2. Cuando estés dentro, escribes la petición HTTP básica con el método GET y el Host correspondiente.
+3. Pulsas Enter dos veces para enviar la orden y verás la respuesta en código HTML que te devuelve el servidor.
