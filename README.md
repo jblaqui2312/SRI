@@ -12,6 +12,6 @@ Curso académico: **2026/2027**  
 
 | Nº Tarea | Descripción | Enlace al Recurso |
 | :--- | :--- | :--- |
-| **Tarea 1** | Configuración inicial del proyecto | [] |
+| **Tarea 1** | Actividad 0.1 - HTTP Introduction | [] |
 | **Tarea 2** | Creación del script principal | [] |
 | **Tarea 3** | Documentación de la API | [] |
