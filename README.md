@@ -24,4 +24,4 @@ Curso académico: **2026/2027**  
 
 | Nº Tarea | Descripción | Enlace al Recurso |
 | :--- | :--- | :--- |
-| **Tarea 1** | Tema_1_Activity#1 | [Actividad1](Tema1/Tema_1_Activity-1.md) |
+| **Tarea 1** | Tema_1_Activity#1 | [Actividad1](Tema0/Tema1/Actividad-#1) |
