@@ -335,13 +335,147 @@ sudo rm /var/www/JMBQ/info.php
 )
 
 
+# 6. Probar la conexión con la base de datos desde PHP (opcional)
+
+Si desea probar si PHP puede establecer conexión con MySQL y ejecutar consultas a la base de datos, puede crear una tabla de prueba con datos ficticios y realizar consultas relacionadas con su contenido con una secuencia de comandos PHP. Para poder hacerlo, debemos crear una base de datos de prueba y un nuevo usuario de MySQL debidamente configurado para acceder a ella.
+Primero, establezca conexión con la consola de MySQL usando la cuenta root:
+
+\`\`\`bash
+sudo mysql
+\`\`\`
 
 
+![Descripción de la captura]()
+
+Para crear una base de datos nueva, ejecute el siguiente comando desde su consola de MySQL:
+
+\`\`\`sql
+CREATE DATABASE example_database;
+\`\`\`
 
 
+![Descripción de la captura]()
+
+Definimos la contraseña de este usuario como password, pero debe sustituir este valor por una contraseña segura de su elección.
+
+\`\`\`sql
+CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+\`\`\`
 
 
+![Descripción de la captura]()
+
+Ahora, debemos darle permiso a este usuario a la base de datos example_database:
+
+\`\`\`sql
+GRANT ALL ON example_database.* TO 'example_user'@'%';
+\`\`\`
 
 
+![Descripción de la captura]()
 
+Ahora, cierre el shell de MySQL con lo siguiente:
+
+\`\`\`sql
+exit
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Puede verificar si el usuario nuevo tiene los permisos adecuados al volver a iniciar sesión en la consola de MySQL, esta vez, con las credenciales de usuario personalizadas:
+
+\`\`\`bash
+mysql -u example_user -p
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Después de iniciar sesión en la consola de MySQL, confirme que tenga acceso a la base de datos example_database:
+
+\`\`\`sql
+SHOW DATABASES;
+\`\`\`
+
+
+![Descripción de la captura]()
+
+A continuación, crearemos una tabla de prueba denominada todo_list: Desde la consola de MySQL, ejecute la siguiente instrucción:
+
+\`\`\`sql
+CREATE TABLE example_database.todo_list (
+	item_id INT AUTO_INCREMENT,
+	content VARCHAR(255),
+	PRIMARY KEY(item_id)
+);
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Inserte algunas filas de contenido en la tabla de prueba. Es posible que quiera repetir el siguiente comando algunas veces, usando valores diferentes:
+
+\`\`\`sql
+INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Para confirmar que los datos se guardaron correctamente en su tabla, ejecute lo siguiente:
+
+\`\`\`sql
+SELECT * FROM example_database.todo_list;
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Después de confirmar que haya datos válidos en su tabla de prueba, puede cerrar la consola de MySQL:
+
+\`\`\`sql
+exit
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Cree un nuevo archivo PHP en su directorio web root personalizado usando su editor preferido. En este caso, usaremos nano:
+
+\`\`\`bash
+nano /var/www/JMBQ/todo_list.php
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Si hay un problema con la conexión de la base de datos, generará una excepción. Copie este contenido en su secuencia de comandos todo_list.php:
+
+\`\`\`php
+/var/www/JMBQ/todo_list.php
+<?php$user = "example_user";$password = "password";$database = "example_database";$table = "todo_list";try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();}
+\`\`\`
+
+
+![Descripción de la captura]()
+
+Guarde y cierre el archivo cuando finalice la edición.
+
+Ahora, puede acceder a esta página en su navegador web al visitar el nombre de dominio o la dirección IP pública de su sitio web seguido de /todo_list.php:
+
+\`\`\`text
+http://JMBQ/todo_list.php
+\`\`\`
+
+
+![Descripción de la captura]()
 
