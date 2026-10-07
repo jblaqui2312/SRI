@@ -1,5 +1,6 @@
 # Actividad #1
-![Descripción de la captura]()
+
+
 Lee el siguiente artículo e instala Apache en Ubuntu:
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04-es
 
@@ -297,19 +298,16 @@ nano /var/www/JMBQ/info.php
 \`\`\`
 
 
-![Descripción de la captura](<img width="889" height="117" alt="image" src="https://github.com/user-attachments/assets/5ddaa780-0a00-465f-9535-3c9eb9a689f5" />
-)
+![Descripción de la captura](https://github.com/user-attachments/assets/5ddaa780-0a00-465f-9535-3c9eb9a689f5)
 
 Con esto se abrirá un archivo vacío. Añada el siguiente texto, que es el código PHP válido, dentro del archivo:
 
-\`\`\`php
+
 /var/www/JMBQ/info.php
-<?phpphpinfo();
-\`\`\`
 
 
-![Descripción de la captura](<img width="898" height="122" alt="image" src="https://github.com/user-attachments/assets/ce433049-e235-42aa-8313-cb4d03a2a889" />
-)
+
+![Descripción de la captura](https://github.com/user-attachments/assets/ce433049-e235-42aa-8313-cb4d03a2a889)
 
 Cuando termine, guarde y cierre el archivo.
 Para probar esta secuencia de comandos, diríjase a su navegador web y acceda al nombre de dominio o la dirección IP de su servidor, seguido del nombre de la secuencia de comandos, que en este caso es info.php:
@@ -321,8 +319,7 @@ http://server_domain_or_IP/info.php
 Verá una página similar a la siguiente:
 
 
-![Descripción de la captura](<img width="1006" height="604" alt="image" src="https://github.com/user-attachments/assets/42f7dd39-d8f3-45bc-a915-89b5570350dd" />
-)
+![Descripción de la captura](https://github.com/user-attachments/assets/42f7dd39-d8f3-45bc-a915-89b5570350dd)
 
 Tras comprobar la información pertinente sobre su servidor PHP a través de esa página, es recomendable que elimine el archivo que creó
 
@@ -345,7 +342,7 @@ sudo mysql
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/7aa748f4-31a8-4c91-9a8b-7c956baf43a8)
 
 Para crear una base de datos nueva, ejecute el siguiente comando desde su consola de MySQL:
 
@@ -354,7 +351,7 @@ CREATE DATABASE example_database;
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/9a210abf-58b8-4d81-bf19-7d58726aa2a9)
 
 Definimos la contraseña de este usuario como password, pero debe sustituir este valor por una contraseña segura de su elección.
 
@@ -363,7 +360,7 @@ CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'passwor
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/cee065c1-6e9e-4e11-92d0-bd71f443cf42)
 
 Ahora, debemos darle permiso a este usuario a la base de datos example_database:
 
@@ -372,16 +369,13 @@ GRANT ALL ON example_database.* TO 'example_user'@'%';
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/3089a18f-f4ea-495f-bfb9-41cb6eaa5caf)
 
 Ahora, cierre el shell de MySQL con lo siguiente:
 
 \`\`\`sql
 exit
 \`\`\`
-
-
-![Descripción de la captura]()
 
 Puede verificar si el usuario nuevo tiene los permisos adecuados al volver a iniciar sesión en la consola de MySQL, esta vez, con las credenciales de usuario personalizadas:
 
@@ -390,7 +384,7 @@ mysql -u example_user -p
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/07e6c0c8-ed08-4b33-9ff2-592f9b475452)
 
 Después de iniciar sesión en la consola de MySQL, confirme que tenga acceso a la base de datos example_database:
 
@@ -399,7 +393,7 @@ SHOW DATABASES;
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/a896e816-2377-4588-8546-8fabb08fe040)
 
 A continuación, crearemos una tabla de prueba denominada todo_list: Desde la consola de MySQL, ejecute la siguiente instrucción:
 
@@ -412,7 +406,7 @@ CREATE TABLE example_database.todo_list (
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/ae764950-59dc-448b-b985-53aa9e5eb5ac)
 
 Inserte algunas filas de contenido en la tabla de prueba. Es posible que quiera repetir el siguiente comando algunas veces, usando valores diferentes:
 
@@ -421,7 +415,7 @@ INSERT INTO example_database.todo_list (content) VALUES ("My first important ite
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/04a75da4-39dc-4d45-90e7-50334049d9a3)
 
 Para confirmar que los datos se guardaron correctamente en su tabla, ejecute lo siguiente:
 
@@ -430,7 +424,7 @@ SELECT * FROM example_database.todo_list;
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/3dd93020-4bad-4997-988a-c91b7c18cadf)
 
 Después de confirmar que haya datos válidos en su tabla de prueba, puede cerrar la consola de MySQL:
 
@@ -438,35 +432,15 @@ Después de confirmar que haya datos válidos en su tabla de prueba, puede cerra
 exit
 \`\`\`
 
-
-![Descripción de la captura]()
-
 Cree un nuevo archivo PHP en su directorio web root personalizado usando su editor preferido. En este caso, usaremos nano:
 
 \`\`\`bash
 nano /var/www/JMBQ/todo_list.php
 \`\`\`
 
-
-![Descripción de la captura]()
-
 Si hay un problema con la conexión de la base de datos, generará una excepción. Copie este contenido en su secuencia de comandos todo_list.php:
 
-\`\`\`php
-/var/www/JMBQ/todo_list.php
-<?php$user = "example_user";$password = "password";$database = "example_database";$table = "todo_list";try {
-  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  echo "<h2>TODO</h2><ol>";
-  foreach($db->query("SELECT content FROM $table") as $row) {
-    echo "<li>" . $row['content'] . "</li>";
-  }
-  echo "</ol>";} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();}
-\`\`\`
-
-
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/f7b21460-17de-427e-98a8-bd6c1fb8a0f1)
 
 Guarde y cierre el archivo cuando finalice la edición.
 
