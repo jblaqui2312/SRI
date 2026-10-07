@@ -152,7 +152,7 @@ php -v
 
 # 4. Creación de un Host Virtual para el Sitio Web
 
-Apache permite utilizar hosts virtuales para gestionar múltiples dominios desde un mismo servidor. En esta guía emplearemos `your_domain` como ejemplo (debes cambiarlo por tu dominio real).
+Apache permite utilizar hosts virtuales para gestionar múltiples dominios desde un mismo servidor. En esta guía emplearemos `JMBQ` como ejemplo (debes cambiarlo por tu dominio real).
 
 Ubuntu 20.04 incluye un sitio web predeterminado en `/var/www/html`. Para evitar modificarlo y facilitar la administración de varios sitios, crearemos una nueva estructura de carpetas dentro de `/var/www` para nuestro dominio, manteniendo la carpeta predeterminada solo como respaldo.
 
@@ -177,29 +177,27 @@ sudo chown -R $USER:$USER /var/www/JMBQ
 Abrimos un nuevo archivo de configuración dentro del directorio `sites-available` de Apache utilizando el editor `nano`:
 
 \`\`\`bash
-sudo nano /etc/apache2/sites-available/your_domain.conf
+sudo nano /etc/apache2/sites-available/JMBQ.conf
 \`\`\`
 
 
-![Descripción de la captura](<img width="1204" height="676" alt="image" src="https://github.com/user-attachments/assets/5c8f978e-c6a9-45d4-a048-2a78692e43e8" />
-)
+![Descripción de la captura](https://github.com/user-attachments/assets/5c8f978e-c6a9-45d4-a048-2a78692e43e8)
 
 Esto abrirá un archivo en blanco donde pegaremos la siguiente estructura de configuración básica:
 
 
-![Descripción de la captura](<img width="1207" height="668" alt="image" src="https://github.com/user-attachments/assets/d8c9e370-1383-4f2d-8436-1c77544b01cd" />
-)
+![Descripción de la captura](https://github.com/user-attachments/assets/26d5cbe3-679d-4a86-ae7c-bb3f41a32b25)
 
-Con esta configuración le indicamos a Apache que sirva el sitio desde la ruta `/var/www/your_domain`. Si deseas realizar pruebas sin un dominio configurado, puedes comentar las líneas `ServerName` y `ServerAlias` agregando un símbolo `#` al inicio.
+Con esta configuración le indicamos a Apache que sirva el sitio desde la ruta `/var/www/JMBQ`. Si deseas realizar pruebas sin un dominio configurado, puedes comentar las líneas `ServerName` y `ServerAlias` agregando un símbolo `#` al inicio.
 
 A continuación, habilitamos el nuevo host virtual con el comando `a2ensite`:
 
 \`\`\`bash
-sudo a2ensite your_domain
+sudo a2ensite JMBQ
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/34f5f097-3831-4c1c-a3e5-168ce9758048)
 
 Si no empleas un nombre de dominio personalizado, es obligatorio desactivar el sitio predeterminado de Apache para evitar que sobrescriba nuestra configuración. Para ello, ejecutamos:
 
@@ -208,18 +206,133 @@ sudo a2dissite 000-default
 \`\`\`
 
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/2aa662e0-f438-4593-a38e-d8fb37972e00)
+
+Verificar y Aplicar la Configuración
+Antes de reiniciar el servidor, es fundamental comprobar que la configuración de Apache no tenga errores de sintaxis:
+
+\`\`\`bash
+sudo apache2ctl configtest
+\`\`\`
 
 
+![Descripción de la captura](https://github.com/user-attachments/assets/9d55b1b9-d136-473b-a6b8-3afa052081bd)
+
+Si todo es correcto, recarga el servicio de Apache para aplicar los cambios:
+
+\`\`\`bash
+sudo systemctl reload apache2
+\`\`\`
 
 
+![Descripción de la captura](https://github.com/user-attachments/assets/9bffbb1c-6d62-4ae1-aa73-9bc660c03308)
+
+Crear la Página de Prueba
+El sitio web ya está activo, pero el directorio raíz (\`/var/www/JMBQ\`) está vacío. Crea un archivo \`index.html\` para verificar que el host virtual funciona correctamente:
+
+\`\`\`bash
+sudo nano /var/www/JMBQ/index.html
+\`\`\`
 
 
+![Descripción de la captura](https://github.com/user-attachments/assets/b65cc4b3-18e9-4558-8abe-3bcc334e65c6)
+
+Añade el siguiente código HTML de prueba dentro del archivo:
+
+\`\`\`html
+<h1>It works!</h1>
+<p>This is the landing page of <strong>JMBQ</strong>.</p>
+\`\`\`
 
 
+![Descripción de la captura](https://github.com/user-attachments/assets/a00ddfaf-0d74-411b-8f44-a88782d26544)
 
 
+Verificar en el Navegador
+Una vez realizados los pasos anteriores, abre tu navegador web y escribe el nombre de dominio o la dirección IP de tu servidor para comprobar que todo funciona correctamente:
 
+\`\`\`text
+http://server_domain_or_IP
+\`\`\`
+
+
+![Descripción de la captura](https://github.com/user-attachments/assets/8cdbacbe-9618-44a5-b577-6dd3a4f2c056)
+
+
+Configurar la Prioridad de Archivos (DirectoryIndex)
+Si deseas cambiar el comportamiento predeterminado de cómo Apache sirve los archivos de inicio (por ejemplo, para que priorice \`index.php\` sobre \`index.html\`), edita el archivo de configuración del módulo:
+
+\`\`\`bash
+sudo nano /etc/apache2/mods-enabled/dir.conf
+\`\`\`
+
+
+![Descripción de la captura](https://github.com/user-attachments/assets/b28ae81d-968b-4152-98fd-1144b7ff36b3)
+
+Asegúrate de que el orden de los archivos en la directiva \`DirectoryIndex\` quede configurado de la siguiente manera:
+
+\`\`\`apache
+<IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+\`\`\`
+
+
+![Descripción de la captura](https://github.com/user-attachments/assets/5e0dda03-b9f0-4b91-afdd-9e60f653413d)
+
+Una vez guardados y cerrados los cambios, recarga Apache para aplicarlos:
+
+\`\`\`bash
+sudo systemctl reload apache2
+\`\`\`
+
+
+# 5. Probar el procesamiento de PHP en su servidor web
+
+Ahora que dispone de una ubicación personalizada para alojar los archivos y las carpetas de su sitio web, crearemos una secuencia de comandos PHP de prueba para verificar que Apache pueda gestionar solicitudes y procesar solicitudes de archivos PHP.
+Cree un archivo nuevo llamado info.php dentro de su carpeta root web personalizada:
+
+\`\`\`bash
+nano /var/www/JMBQ/info.php
+\`\`\`
+
+
+![Descripción de la captura](<img width="889" height="117" alt="image" src="https://github.com/user-attachments/assets/5ddaa780-0a00-465f-9535-3c9eb9a689f5" />
+)
+
+Con esto se abrirá un archivo vacío. Añada el siguiente texto, que es el código PHP válido, dentro del archivo:
+
+\`\`\`php
+/var/www/JMBQ/info.php
+<?phpphpinfo();
+\`\`\`
+
+
+![Descripción de la captura](<img width="898" height="122" alt="image" src="https://github.com/user-attachments/assets/ce433049-e235-42aa-8313-cb4d03a2a889" />
+)
+
+Cuando termine, guarde y cierre el archivo.
+Para probar esta secuencia de comandos, diríjase a su navegador web y acceda al nombre de dominio o la dirección IP de su servidor, seguido del nombre de la secuencia de comandos, que en este caso es info.php:
+
+\`\`\`text
+http://server_domain_or_IP/info.php
+\`\`\`
+
+Verá una página similar a la siguiente:
+
+
+![Descripción de la captura](<img width="1006" height="604" alt="image" src="https://github.com/user-attachments/assets/42f7dd39-d8f3-45bc-a915-89b5570350dd" />
+)
+
+Tras comprobar la información pertinente sobre su servidor PHP a través de esa página, es recomendable que elimine el archivo que creó
+
+\`\`\`bash
+sudo rm /var/www/JMBQ/info.php
+\`\`\`
+
+
+![Descripción de la captura](<img width="503" height="45" alt="image" src="https://github.com/user-attachments/assets/9a13d554-e59c-44e1-9a0d-5f28e814233b" />
+)
 
 
 
