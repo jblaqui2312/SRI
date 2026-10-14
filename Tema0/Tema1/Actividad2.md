@@ -1,4 +1,4 @@
-# Actividad #2
+# Actividad #2 ![Descripción de la captura]()
 
 1. Apache utilizará el puerto 81 además del 80
 
@@ -26,6 +26,48 @@ El archivo correcto es /etc/apache2/ports.conf. Por defecto suele tener Listen 8
 
 Listen 80
 Listen 81
+
+![Descripción de la captura](https://github.com/user-attachments/assets/af181101-4a3a-4a64-8eb0-d57e2d1ff3cb)
+
+## 2. Añadir el dominio “marisma.intranet” en el fichero “hosts”
+
+El archivo se llama /etc/hosts. Además, el dominio debe ir junto marisma.intranet
+
+Abre el archivo con permisos de administrador:
+
+sudo nano /etc/hosts
+
+![Descripción de la captura](https://github.com/user-attachments/assets/3420757e-68d4-4390-9afb-0d9e3c36907e)
+
+Y añade la siguiente línea al final:
+
+127.0.0.1   marisma.intranet
+
+![Descripción de la captura](https://github.com/user-attachments/assets/16df8fe4-aea9-4e44-be69-7e43cd054c2e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
