@@ -6,16 +6,29 @@
 	
 3. Cambia la directiva “ServerTokens” para mostrar el nombre del producto.
 	
-5. Comprueba si se visualiza el pie de página en las páginas generadas por Apache (por ejemplo, en las páginas de error). Cambia el valor de la directiva “ServerSignature” y comprueba que funciona correctamente. 
+4. Comprueba si se visualiza el pie de página en las páginas generadas por Apache (por ejemplo, en las páginas de error). Cambia el valor de la directiva “ServerSignature” y comprueba que funciona correctamente. 
 	
-6. Crea un directorio “prueba” y otro directorio “prueba2”. Incluye un par de páginas en cada una de ellas.
+5. Crea un directorio “prueba” y otro directorio “prueba2”. Incluye un par de páginas en cada una de ellas.
 	
-7. Redirecciona el contenido de la carpeta “prueba” hacia “prueba2”
+6. Redirecciona el contenido de la carpeta “prueba” hacia “prueba2”
 	
-8. Es posible redireccionar tan solo una página en lugar de toda la carpeta. Pruébalo.
+7. Es posible redireccionar tan solo una página en lugar de toda la carpeta. Pruébalo.
 	
-9Usa la directiva userdir
+8. Usa la directiva userdir
 	
-Usa la directiva alias para redireccionar a una carpeta dentro del directorio de usuario.
+9. Usa la directiva alias para redireccionar a una carpeta dentro del directorio de usuario.
 	
-¿Para qué sirve la directiva Options y dónde aparece. Comprueba si apache indexa los directorios. Si es así, ¿cómo lo desactivamos?
+10. ¿Para qué sirve la directiva Options y dónde aparece. Comprueba si apache indexa los directorios. Si es así, ¿cómo lo desactivamos?
+
+## 1. Configurar Apache para usar el puerto 81 además del 80
+
+El archivo correcto es /etc/apache2/ports.conf. Por defecto suele tener Listen 80. Para añadir el puerto 81 sin quitar el 80, debes mantener ambas líneas:
+
+Listen 80
+Listen 81
+
+
+
+
+
+
