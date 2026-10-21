@@ -75,30 +75,77 @@ Se crean dos directorios dentro del sitio web de Apache, llamados prueba y prueb
 
 ![Descripción de la captura](https://github.com/user-attachments/assets/a754fea7-f177-41bd-b415-2cd7057fed85)
 
-![Descripción de la captura]()
+![Descripción de la captura](https://github.com/user-attachments/assets/c10f6bdb-c0f8-46dc-bd91-ec0ed7309ce3)
 
 ## 6. Redireccionar el contenido de prueba hacia prueba2
 
 Se configura Apache para redirigir las peticiones realizadas al directorio prueba hacia prueba2. De esta forma, al acceder a una página de prueba, el navegador se dirige al directorio de destino
+En la carpeta de la imagen usando "sudo nano" para entrar. En lo ultimo escribimos "Redirect /prueba /prueba2"
+![Descripción de la captura](https://github.com/user-attachments/assets/926cda0b-bc83-4425-8353-c3cec0f9dbb2)
+
+Luego de eso usamos el comando "Sudo systemctl restart apache2" para reiniciar el servicio
 
 
+## OJO!!!
+
+Hay que ejecutar el siguiente comando para activar la virtualizacion
+
+![Descripción de la captura](https://github.com/user-attachments/assets/78338913-5a5a-46a1-9a3b-beae05e9d907)
 
 
+## 7. Redirección de una página específica
 
+Es posible acotar la redirección para que afecte únicamente a un archivo concreto en lugar de a todo un directorio completo. 
 
+* **Configuración aplicada:**
+  ```apache
+  Redirect /prueba/pagina.html /prueba2/nueva_pagina.html
 
+Previamente, en el navegador, comprobamos que nos sale al ejecutar la pagina
 
+![Descripción de la captura](https://github.com/user-attachments/assets/7cf6fb16-093f-42ff-b1f6-47c3e55760f7)
 
+Creamos las carpetas que vamos a modificar
 
+![Descripción de la captura](https://github.com/user-attachments/assets/d894c647-8648-49c7-ac14-fdd70ecd5131)
 
+Ahora si, nos vamos de nuevo al archivo de configuración (/etc/apache2/apche2.conf) y modificamos esa linea mencionada con anterioridad
 
+![Descripción de la captura](https://github.com/user-attachments/assets/40d530b3-ecbf-4bf5-b7e8-9e330d02a282)
 
+Con eso ya puesto, nos vamos al navegador y lo comprobamos 
 
+![Descripción de la captura](https://github.com/user-attachments/assets/ee390bcb-8610-41c4-baf0-d67f5c7bbbb2)
 
+## 8. Habilitación y configuración del módulo Userdir (`userdir`)
 
+Se configuró el módulo `userdir` de Apache para permitir que los usuarios del sistema operativo puedan alojar y servir páginas web personales desde sus propios directorios home.
 
+Pasos realizados:
+1. **Activación del módulo:** Se habilitó `userdir` en el servidor web mediante la terminal:
+   ```bash
+   sudo a2enmod userdir
 
+![Descripción de la captura](https://github.com/user-attachments/assets/e3fde0e8-9bc1-4fd9-a444-5f846611c961)
 
+Reiniciamos Apache
+Creamos una carpeta de prueba para nuestro usuario
+
+![Descripción de la captura](https://github.com/user-attachments/assets/56bfe509-159a-43ce-8c58-ae925e45c915)
+
+Creamos un archivo index
+
+![Descripción de la captura](https://github.com/user-attachments/assets/d2acc001-7a0d-4916-b93b-5af0603ec581)
+
+Y comprobamos que funciona al escribir en el navegador "http://localhost/~tu_usuario/"
+
+![Descripción de la captura](https://github.com/user-attachments/assets/c08da326-aeeb-4a3c-a5a8-5c0cfbb82b10)
+
+## OJO!!!
+
+Si no te llega a cargar y te sale el error "Forbidden" es porque dicho usuario o carpeta no tiene lo suficientes permisos por lo cual hacemos lo siguiente
+
+![Descripción de la captura](https://github.com/user-attachments/assets/05bacc7e-b3b4-4427-8418-230b1a0f0b61)
 
 
 
