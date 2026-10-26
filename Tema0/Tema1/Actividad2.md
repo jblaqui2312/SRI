@@ -147,5 +147,33 @@ Si no te llega a cargar y te sale el error "Forbidden" es porque dicho usuario o
 
 ![Descripción de la captura](https://github.com/user-attachments/assets/05bacc7e-b3b4-4427-8418-230b1a0f0b61)
 
+## 9. Uso de la directiva Alias hacia el directorio de usuario
+La directiva Alias permite mapear URLs específicas a directorios físicos que se encuentran fuera del directorio raíz principal del servidor web (DocumentRoot). En este caso, la utilizaremos para redirigir una ruta web hacia una carpeta concreta dentro del directorio de un usuario del sistema.
+
+Modificación del archivo de configuración:
+Nos dirigimos al archivo de configuración de Apache (por ejemplo, en /etc/apache2/apache2.conf o dentro de los sitios habilitados en /etc/apache2/sites-available/000-default.conf) para añadir la directiva Alias.
+
+![Descripción de la captura](https://github.com/user-attachments/assets/c190ac5d-a868-4d32-8eb0-f97c0cedaa27)
+
+Reiniciar el servidor web:
+Para aplicar los cambios realizados en la configuración de Apache, reiniciamos el servicio mediante la terminal:
+
+![Descripción de la captura](https://github.com/user-attachments/assets/f942b325-24c6-46e5-b81a-47f6efcaf45e)
+
+Comprobación en el navegador:
+Abrimos el navegador web y accedemos a la ruta configurada (http://localhost/mi_alias) para verificar que el contenido de la carpeta del usuario se muestra correctamente.
+
+
+![Descripción de la captura](https://github.com/user-attachments/assets/582a00f4-e8ce-446a-8ab7-a69d28f6179c)
+
+
+
+
+
+
+
+
+
+
 
 
