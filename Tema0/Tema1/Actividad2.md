@@ -68,7 +68,6 @@ Después, se cambia el valor a Off para ocultar dicha información y se repite l
 
 ![Descripción de la captura](https://github.com/user-attachments/assets/75055e06-39d2-4315-b154-1763c0fd580b)
 
-
 ## 5. Crear los directorios prueba y prueba2
 
 Se crean dos directorios dentro del sitio web de Apache, llamados prueba y prueba2. En cada uno se incluyen dos páginas HTML para comprobar que el servidor puede acceder a su contenido
