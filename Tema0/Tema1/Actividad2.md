@@ -167,9 +167,37 @@ Abrimos el navegador web y accedemos a la ruta configurada (http://localhost/mi_
 ![Descripción de la captura](https://github.com/user-attachments/assets/582a00f4-e8ce-446a-8ab7-a69d28f6179c)
 
 
+## 10. Uso y configuración de la directiva Options
 
+¿Para qué sirve la directiva `Options` y dónde aparece? Comprueba si Apache indexa los directorios. Si es así, ¿cómo lo desactivamos?
 
+* **¿Para qué sirve la directiva `Options`?**
+  Sirve para controlar qué características o funcionalidades del servidor web están activadas o desactivadas en un directorio específico. Permite configurar aspectos como el seguimiento de enlaces simbólicos, la ejecución de scripts o la visualización del listado de archivos.
 
+* **¿Dónde aparece?**
+  Aparece dentro de los bloques de configuración de directorios de Apache, específicamente delimitada por etiquetas como `<Directory>` o `<DirectoryMatch>` (por ejemplo, en el archivo `/etc/apache2/sites-available/000-default.conf` o en un archivo `.htaccess`).
+
+![Descripción de la captura](https://github.com/user-attachments/assets/c1e6d20c-2637-43ad-8288-de4148e88642)
+
+* **Comprobar si Apache indexa los directorios:**
+  Puedes comprobarlo fácilmente si entras desde el navegador a una carpeta de tu servidor web que **no** contenga ningún archivo principal de inicio (como `index.html` o `index.php`). Si Apache te muestra en pantalla una lista con los ficheros y subcarpetas que contiene ese directorio en lugar de un error de acceso denegado, significa que **sí está indexando** los directorios.
+
+![Descripción de la captura](https://github.com/user-attachments/assets/ad98c809-9e16-44b4-9ada-0e06156a3c9c)
+
+* **¿Cómo lo desactivamos?**
+  Para deshabilitar la indexación automática y evitar que los usuarios puedan ver el contenido de las carpetas, debes anteponer un signo menos a la opción (`-Indexes`). 
+
+  Debe quedar configurado de la siguiente manera en tu archivo de Apache:
+
+``apache
+<Directory /home/josemariabq/mi_carpeta>
+    Options -Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+``
+
+![Descripción de la captura](https://github.com/user-attachments/assets/82fa6766-47ae-4b5f-918a-ab4d4f2e4037)
 
 
 
