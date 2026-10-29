@@ -198,9 +198,78 @@ Abrimos el navegador web y accedemos a la ruta configurada (http://localhost/mi_
 
 ![Descripción de la captura](https://github.com/user-attachments/assets/82fa6766-47ae-4b5f-918a-ab4d4f2e4037)
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Actividad 2.2 
 
+--------
 
+## Descripción del Script (`ports.sh`)
 
+El script está diseñado para ejecutarse en sistemas (específicamente dentro del directorio de configuración de Apache `/etc/apache2`). Su función principal es añadir un nuevo puerto de escucha de forma segura, evitando duplicados y aplicando los cambios automáticamente.
 
+### ¿Qué hace el script?
+1. **Validación de parámetros:** Comprueba que se le haya pasado un número de puerto como argumento al ejecutarlo.
+2. **Comprobación de duplicados:** Busca mediante `grep` si el puerto ya se encuentra configurado en el fichero `ports.conf`.
+3. **Copia de seguridad:** Si el puerto no existe, crea automáticamente un archivo de respaldo (`ports.bak`) antes de realizar cualquier modificación.
+4. **Modificación y reinicio:** Añade la directiva `Listen [puerto]` al archivo de configuración y reinicia el servicio de Apache para aplicar los cambios.
 
+---
+
+## Instrucciones de uso
+
+1. Colócate en el directorio de configuración de Apache:
+   ```bash
+   cd /etc/apache2
+
+![Descripción de la captura](https://github.com/user-attachments/assets/fc3a76e2-9617-4803-b234-ad2d9503b514)
+
+2. Crea el siguiente script
+```
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "[-] Error: Falta indicar el número de puerto."
+    echo "[*] Modo de empleo: $0 <puerto>"
+    echo "[*] Ejemplo: $0 8080"
+    exit 1
+fi
+
+PUERTO="$1"
+FICHERO="ports.conf"
+
+if [ ! -f "$FICHERO" ]; then
+    echo "[-] Error: No se encuentra el fichero $FICHERO en la ruta actual."
+    exit 1
+fi
+
+if grep -qE "^\s*Listen\s+$PUERTO" "$FICHERO"; then
+    echo "[!] Aviso: El puerto $PUERTO ya se encuentra configurado en $FICHERO."
+    exit 0
+fi
+
+cp "$FICHERO" "${FICHERO}.bak"
+echo "[+] Backup generado con éxito (${FICHERO}.bak)"
+
+echo "Listen $PUERTO" >> "$FICHERO"
+echo "[+] El puerto $PUERTO ha sido añadido correctamente."
+
+systemctl restart apache2
+echo "[+] Servicio de Apache reiniciado correctamente."
+```
+
+![Descripción de la captura](https://github.com/user-attachments/assets/60c3d3bf-840f-4508-bcf8-55432321c109)
+
+3. Hacemos distintas pruebas
+
+![Descripción de la captura](https://github.com/user-attachments/assets/be6a3013-db25-4e85-8234-b6ca2fb58758)
+
+![Descripción de la captura](https://github.com/user-attachments/assets/45cefd69-493e-47fa-96d9-7d2e9c7433da)
+
+![Descripción de la captura](https://github.com/user-attachments/assets/33578a06-6502-42d6-bf45-aac39917b7aa)
+
+Podremos comprobarlo o quitarlo en la siguiente carpeta
+
+![Descripción de la captura](https://github.com/user-attachments/assets/5cf255cd-618a-464f-9a71-ae8acc6ddb80)
