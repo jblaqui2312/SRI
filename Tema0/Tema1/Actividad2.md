@@ -1,4 +1,4 @@
-# Actividad #2 ![Descripción de la captura]()
+# Actividad #2
 
 1. Apache utilizará el puerto 81 además del 80
 
