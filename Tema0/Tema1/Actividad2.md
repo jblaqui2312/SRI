@@ -184,7 +184,7 @@ Abrimos el navegador web y accedemos a la ruta configurada (http://localhost/mi_
 ![Descripción de la captura](https://github.com/user-attachments/assets/ad98c809-9e16-44b4-9ada-0e06156a3c9c)
 
 * **¿Cómo lo desactivamos?**
-  Para deshabilitar la indexación automática y evitar que los usuarios puedan ver el contenido de las carpetas, debes anteponer un signo menos a la opción (`-Indexes`). 
+  Para deshabilitar la indexación automática y evitar que los usuarios puedan ver el contenido de las carpetas, debes anteponer un signo menos a la opción (`-Indexes`)
 
   Debe quedar configurado de la siguiente manera en tu archivo de Apache:
 
@@ -208,13 +208,13 @@ Abrimos el navegador web y accedemos a la ruta configurada (http://localhost/mi_
 
 ## Descripción del Script (`ports.sh`)
 
-El script está diseñado para ejecutarse en sistemas (específicamente dentro del directorio de configuración de Apache `/etc/apache2`). Su función principal es añadir un nuevo puerto de escucha de forma segura, evitando duplicados y aplicando los cambios automáticamente.
+El script está diseñado para ejecutarse en sistemas (específicamente dentro del directorio de configuración de Apache `/etc/apache2`). Su función principal es añadir un nuevo puerto de escucha de forma segura, evitando duplicados y aplicando los cambios automáticamente
 
 ### ¿Qué hace el script?
 1. **Validación de parámetros:** Comprueba que se le haya pasado un número de puerto como argumento al ejecutarlo.
-2. **Comprobación de duplicados:** Busca mediante `grep` si el puerto ya se encuentra configurado en el fichero `ports.conf`.
-3. **Copia de seguridad:** Si el puerto no existe, crea automáticamente un archivo de respaldo (`ports.bak`) antes de realizar cualquier modificación.
-4. **Modificación y reinicio:** Añade la directiva `Listen [puerto]` al archivo de configuración y reinicia el servicio de Apache para aplicar los cambios.
+2. **Comprobación de duplicados:** Busca mediante `grep` si el puerto ya se encuentra configurado en el fichero `ports.conf`
+3. **Copia de seguridad:** Si el puerto no existe, crea automáticamente un archivo de respaldo (`ports.bak`) antes de realizar cualquier modificación
+4. **Modificación y reinicio:** Añade la directiva `Listen [puerto]` al archivo de configuración y reinicia el servicio de Apache para aplicar los cambios
 
 ---
 
@@ -273,3 +273,55 @@ echo "[+] Servicio de Apache reiniciado correctamente."
 Podremos comprobarlo o quitarlo en la siguiente carpeta
 
 ![Descripción de la captura](https://github.com/user-attachments/assets/5cf255cd-618a-464f-9a71-ae8acc6ddb80)
+
+
+## Añadir dominio e IP al fichero hosts
+
+Este script automatiza el registro de nombres de dominio locales en el archivo `/etc/hosts` de Ubuntu, validando previamente que no existan duplicados y que se introduzcan los parámetros correctos
+
+#### ¿Cómo funciona?
+1. **Validación de permisos (`$EUID`):** Comprueba que el script se ejecute con permisos de superusuario (`sudo`), ya que el fichero `/etc/hosts` requiere acceso root para ser modificado
+2. **Validación de argumentos (`$#`):** Verifica que se le pasen exactamente **dos argumentos** al script: la dirección IP y el nombre de dominio. Si falta alguno, muestra un mensaje de ayuda y se detiene
+3. **Control de duplicados (`grep`):** Utiliza `grep -qw` para buscar si el dominio introducido ya se encuentra registrado en `/etc/hosts`. Si ya existe, avisa al usuario y finaliza la ejecución sin duplicar líneas
+4. **Modificación:** Si la comprobación es correcta, añade la línea con la estructura `IP DOMINIO` al final del fichero de configuración
+
+#### Modo de uso:
+```bash
+sudo ./agregar_host.sh <IP> <dominio>
+````
+
+1. Creación del script
+
+Para empezar ejecutamos el siguiente comando:
+
+![Descripción de la captura](https://github.com/user-attachments/assets/dd2861e9-55c1-4c95-bcb6-ccd44344e880)
+
+2. Creamos el script que nos pide:
+
+![Descripción de la captura](https://github.com/user-attachments/assets/c0505af3-e51c-4a2d-a1a9-58e642cbdc7a)
+
+
+## Script para una pagina web
+
+1. Creamos el script
+
+![Descripción de la captura](https://github.com/user-attachments/assets/50e679cb-86f9-4c0b-bbef-1f771b183179)
+
+2. Contenido del script
+
+![Descripción de la captura](https://github.com/user-attachments/assets/61046111-b3cf-47bf-80b3-f6e9a5ae10e0)
+
+3. Pruebas de uso
+
+Le damos permisos
+
+![Descripción de la captura](https://github.com/user-attachments/assets/3636d6aa-7e97-4107-baa5-f45667cc2e87)
+
+Ejecutamos el script
+
+![Descripción de la captura](https://github.com/user-attachments/assets/5bdbbe80-8016-478b-8f19-f6ba9ae5a8cd)
+
+Comprobamos que se haya creado
+
+![Descripción de la captura](https://github.com/user-attachments/assets/56f1e293-04f6-4ced-9edd-b21cdc3baa98)
+
