@@ -1,6 +1,5 @@
 # Actividad #3
 
-![Descripcion de la imagen]()
 
 Previamente se recomienda leer:
 * [Apache How-To: Access Control](https://httpd.apache.org/docs/2.4/howto/access.html)
@@ -117,9 +116,53 @@ Allow from 10.3.0.100/255.255.0.0
 Require ip 10.3.0.100/255.255.0.0
 ```
 
+### 4. Modifica la configuración de forma que el acceso a dir1:
 
+Se permita a "marisma.intranet" y no se permita desde 10.3.0.101"
+```
+<Directory /var/www/html/dir1>
+    Allow from marisma.intranet
+    Deny from 10.3.0.101
+</Directory>
+```
 
+![Descripcion de la imagen]()
 
+Equivalente moderno (Apache 2.4 con <RequireAll>):
+```
+<Directory /var/www/html/dir2>
+    <RequireAll>
+        Require ip 10.3.0.101/8
+        Require not host marisma.intranet
+    </RequireAll>
+</Directory>
+```
+
+![Descripcion de la imagen]()
+
+### 5. Modifica la configuración de forma que el acceso a dir2:
+
+Se permita a "10.3.0.100/8" y no a "marisma.intranet"
+```
+<Directory /var/www/html/dir2>
+    Allow from 10.3.0.101/8
+    Deny from marisma.intranet
+</Directory>
+```
+
+![Descripcion de la imagen]()
+
+Equivalente moderno (Apache 2.4 con <RequireAll>):
+```
+<Directory /var/www/html/dir2>
+    <RequireAll>
+        Require ip 10.3.0.101/8
+        Require not host marisma.intranet
+    </RequireAll>
+</Directory>
+```
+
+![Descripcion de la imagen]()
 
 
 
