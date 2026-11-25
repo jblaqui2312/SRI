@@ -30,3 +30,5 @@ Curso académico: **2026/2027**  
 | **Tarea 4** | Tema_1_Activity#4 | [Actividad4](Tema0/Tema1/Actividad4.md) |
 | **Tarea 5** | Tema_1_Activity#5 | [Actividad5](Tema0/Tema1/Actividad5.md) |
 | **Tarea 6** | Tema_1_Activity#6 | [Actividad6](Tema0/Tema1/Actividad6.md) |
+| **Tarea 7** | Tema_1_Activity#7 | [Actividad7](Tema0/Tema1/Actividad7.md) |
+
