@@ -126,8 +126,6 @@ Se permita a "marisma.intranet" y no se permita desde 10.3.0.101"
 </Directory>
 ```
 
-![Descripcion de la imagen]()
-
 Equivalente moderno (Apache 2.4 con <RequireAll>):
 ```
 <Directory /var/www/html/dir2>
@@ -137,8 +135,6 @@ Equivalente moderno (Apache 2.4 con <RequireAll>):
     </RequireAll>
 </Directory>
 ```
-
-![Descripcion de la imagen]()
 
 ### 5. Modifica la configuración de forma que el acceso a dir2:
 
@@ -150,8 +146,6 @@ Se permita a "10.3.0.100/8" y no a "marisma.intranet"
 </Directory>
 ```
 
-![Descripcion de la imagen]()
-
 Equivalente moderno (Apache 2.4 con <RequireAll>):
 ```
 <Directory /var/www/html/dir2>
@@ -162,11 +156,11 @@ Equivalente moderno (Apache 2.4 con <RequireAll>):
 </Directory>
 ```
 
-![Descripcion de la imagen]()
+![Descripcion de la imagen](https://github.com/user-attachments/assets/c32b081d-81c6-4dfd-abd2-15094b1a8af5)
 
+Guardamos el archivo y luego comprobaremos que nos haya funcionado con los siguientes comandos
 
-
-
+![Descripcion de la imagen](https://github.com/user-attachments/assets/d1cd6171-8bb9-418e-adc0-bc700f6a0000)
 
 
 
